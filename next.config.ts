@@ -15,7 +15,12 @@ const nextConfig: NextConfig = {
     return [
       { source: "/:path*", headers: securityHeaders },
       // Slike za SEO/ikone se rijetko mijenjaju: dugo keširanje.
-      { source: "/(og-image|logo|icon-192|icon-512|apple-touch-icon).png", headers: [{ key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" }] },
+      {
+        source: "/(og-image|logo|icon-192|icon-512|apple-touch-icon).png",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" },
+        ],
+      },
     ];
   },
 };

@@ -1,6 +1,5 @@
 import { nav } from "@/data/site";
-import { Button } from "@/components/ui/Button";
-import { Container } from "@/components/ui/Container";
+import { Button, Container } from "@/components/ui";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
 
@@ -11,12 +10,18 @@ export function Header() {
         <Logo />
         <nav aria-label="Glavna navigacija" className="flex items-center gap-3 sm:gap-6">
           {nav.map((l) => (
-            <a key={l.href} href={l.href} className="hidden text-[15px] font-medium text-muted transition-colors hover:text-ink md:block">
+            <a
+              key={l.href}
+              href={l.href}
+              className="hidden text-[15px] font-medium text-muted transition-colors hover:text-ink md:block"
+            >
               {l.label}
             </a>
           ))}
           <ThemeToggle />
-          <Button href="#kontakt" size="sm" className="max-[429px]:hidden">Kontakt</Button>
+          <Button href="#kontakt" size="sm" className="max-[429px]:hidden">
+            Kontakt
+          </Button>
         </nav>
       </Container>
     </header>

@@ -8,12 +8,15 @@ const KEY = "codecraft-theme";
 
 function subscribe(cb: () => void) {
   const obs = new MutationObserver(cb);
-  obs.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  obs.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["data-theme"],
+  });
   return () => obs.disconnect();
 }
-const getTheme = () => (document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark");
+const getTheme = () =>
+  document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
 
-/** Sunce / mjesec prekidač. Izbor se pamti u localStorage; početnu temu postavlja skripta u layout.tsx. */
 export function ThemeToggle() {
   const theme = useSyncExternalStore(subscribe, getTheme, () => "dark");
   const isLight = theme === "light";
@@ -35,9 +38,26 @@ export function ThemeToggle() {
       onClick={toggle}
       className="relative h-8 cursor-pointer w-16 shrink-0 rounded-full border border-field bg-surface transition-colors hover:border-ink"
     >
-      <span className={cn("absolute left-[3px] top-[3px] size-6 rounded-full bg-accent transition-transform duration-200", !isLight && "translate-x-8")} />
-      <Sun aria-hidden className={cn("absolute left-[7px] top-[7px] size-4 transition-colors", isLight ? "text-on-accent" : "text-muted")} />
-      <Moon aria-hidden className={cn("absolute right-[7px] top-[7px] size-4 transition-colors", isLight ? "text-muted" : "text-on-accent")} />
+      <span
+        className={cn(
+          "absolute left-[3px] top-[3px] size-6 rounded-full bg-accent transition-transform duration-200",
+          !isLight && "translate-x-8",
+        )}
+      />
+      <Sun
+        aria-hidden
+        className={cn(
+          "absolute left-[7px] top-[7px] size-4 transition-colors",
+          isLight ? "text-on-accent" : "text-muted",
+        )}
+      />
+      <Moon
+        aria-hidden
+        className={cn(
+          "absolute right-[7px] top-[7px] size-4 transition-colors",
+          isLight ? "text-muted" : "text-on-accent",
+        )}
+      />
     </button>
   );
 }

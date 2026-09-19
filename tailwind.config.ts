@@ -53,10 +53,7 @@ const hexToChannels = (hex: string) => {
 const themeVars = (theme: "dark" | "light") => ({
   colorScheme: theme,
   ...Object.fromEntries(
-    Object.entries(palettes[theme] as Palette).map(([k, v]) => [
-      `--c-${k}`,
-      hexToChannels(v),
-    ]),
+    Object.entries(palettes[theme] as Palette).map(([k, v]) => [`--c-${k}`, hexToChannels(v)]),
   ),
   "--shadow-card": shadows[theme].card,
   "--shadow-glow": shadows[theme].glow,
@@ -68,9 +65,7 @@ const config: Config = {
   content: ["./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
-      colors: Object.fromEntries(
-        colorNames.map((k) => [k, `rgb(var(--c-${k}) / <alpha-value>)`]),
-      ),
+      colors: Object.fromEntries(colorNames.map((k) => [k, `rgb(var(--c-${k}) / <alpha-value>)`])),
       fontFamily: {
         display: ["var(--font-poppins)", "system-ui", "sans-serif"],
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
@@ -124,16 +119,8 @@ const config: Config = {
       // Prigušen "glow" za značku u hero sekciji (beskonačna petlja)
       keyframes: {
         "badge-glow": {
-          "0%, 100%": {
-            borderColor: "rgb(var(--c-line-strong))",
-            boxShadow:
-              "0 0 0 0 rgb(var(--c-accent) / 0), 0 0 10px rgb(var(--c-accent) / 0.10)",
-          },
-          "50%": {
-            borderColor: "rgb(var(--c-accent) / 0.65)",
-            boxShadow:
-              "0 0 0 3px rgb(var(--c-accent) / 0.08), 0 0 26px rgb(var(--c-accent) / 0.32)",
-          },
+          "0%, 100%": { opacity: "0" },
+          "50%": { opacity: "1" },
         },
       },
       animation: {

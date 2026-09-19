@@ -1,15 +1,18 @@
 import { ArrowRight } from "lucide-react";
 import { hero } from "@/data/site";
-import { Button } from "@/components/ui/Button";
-import { Container } from "@/components/ui/Container";
-import { MockPhone, MockWindow } from "@/components/ui/Mock";
+import { Button, Container, MockPhone, MockWindow } from "@/components/ui";
 
 export function Hero() {
   return (
     <section className="pb-12 pt-8 md:pb-24 md:pt-16">
       <Container className="grid items-center gap-12 md:grid-cols-[1.1fr_.9fr]">
         <div>
-          <span className="mb-6 inline-flex animate-badge-glow items-center rounded-full border border-line-strong bg-surface px-3.5 py-1.5 text-sm text-muted">
+          <span className="relative mb-6 inline-flex items-center rounded-full border border-line-strong bg-surface px-3.5 py-1.5 text-sm text-muted">
+            {/* Glow: statičan sloj čija se samo prozirnost animira (radi na GPU, ne opterećuje glavnu nit). */}
+            <span
+              aria-hidden
+              className="pointer-events-none absolute -inset-px animate-badge-glow rounded-full border border-accent/65 shadow-[0_0_0_3px_rgb(var(--c-accent)/0.08),0_0_26px_rgb(var(--c-accent)/0.32)]"
+            />
             {hero.badge}
           </span>
           <h1 className="mb-6 font-display text-display-xl-sm md:text-display-xl">
@@ -22,7 +25,9 @@ export function Hero() {
             <Button href="#kontakt">
               {hero.primaryCta} <ArrowRight className="size-[18px]" aria-hidden />
             </Button>
-            <Button href="#usluge" variant="secondary">{hero.secondaryCta}</Button>
+            <Button href="#usluge" variant="secondary">
+              {hero.secondaryCta}
+            </Button>
           </div>
         </div>
         <div className="relative pb-8 pr-8">

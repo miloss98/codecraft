@@ -1,5 +1,5 @@
 import { contactInfo, nav, site } from "@/data/site";
-import { Container } from "@/components/ui/Container";
+import { Container } from "@/components/ui";
 import { Logo } from "./Logo";
 
 export function Footer() {
@@ -10,16 +10,32 @@ export function Footer() {
           <Logo />
           <nav aria-label="Linkovi u podnožju" className="flex flex-wrap gap-x-6 gap-y-2">
             {nav.map((l) => (
-              <a key={l.href} href={l.href} className="font-medium text-muted transition-colors hover:text-ink">{l.label}</a>
+              <a
+                key={l.href}
+                href={l.href}
+                className="font-medium text-muted transition-colors hover:text-ink"
+              >
+                {l.label}
+              </a>
             ))}
-            <a href="#kontakt" className="font-medium text-muted transition-colors hover:text-ink">Kontakt</a>
+            <a href="#kontakt" className="font-medium text-muted transition-colors hover:text-ink">
+              Kontakt
+            </a>
           </nav>
           <ul className="flex gap-3">
             {contactInfo.map(({ icon: Icon, label, href }) => (
               <li key={label}>
-                <a href={href} aria-label={label} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="grid size-10 place-items-center rounded-control border border-line text-muted transition-colors hover:border-line-strong hover:text-ink">
+                <a
+                  href={href}
+                  aria-label={label}
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel="noopener noreferrer"
+                  className="grid size-10 place-items-center rounded-control border border-line text-muted transition-colors hover:border-line-strong hover:text-ink"
+                >
                   <Icon className="size-5" aria-hidden />
-                  {href.startsWith("http") && <span className="sr-only">(otvara se u novom tabu)</span>}
+                  {href.startsWith("http") && (
+                    <span className="sr-only">(otvara se u novom tabu)</span>
+                  )}
                 </a>
               </li>
             ))}

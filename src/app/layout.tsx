@@ -4,7 +4,12 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { site } from "@/data/site";
 import "./globals.css";
 
-const poppins = Poppins({ variable: "--font-poppins", subsets: ["latin", "latin-ext"], weight: ["600", "700"], display: "swap" });
+const poppins = Poppins({
+  variable: "--font-poppins",
+  subsets: ["latin", "latin-ext"],
+  weight: ["600", "700"],
+  display: "swap",
+});
 const inter = Inter({ variable: "--font-inter", subsets: ["latin", "latin-ext"], display: "swap" });
 
 export const metadata: Metadata = {
@@ -20,7 +25,17 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   formatDetection: { email: false, address: false, telephone: false },
   robots: site.indexable
-    ? { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } }
+    ? {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          "max-image-preview": "large",
+          "max-snippet": -1,
+          "max-video-preview": -1,
+        },
+      }
     : { index: false, follow: false },
   openGraph: {
     type: "website",
@@ -29,7 +44,15 @@ export const metadata: Metadata = {
     locale: site.locale,
     title: site.seoTitle,
     description: site.description,
-    images: [{ url: site.ogImage.path, width: site.ogImage.width, height: site.ogImage.height, alt: site.ogImage.alt, type: "image/png" }],
+    images: [
+      {
+        url: site.ogImage.path,
+        width: site.ogImage.width,
+        height: site.ogImage.height,
+        alt: site.ogImage.alt,
+        type: "image/png",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -42,7 +65,9 @@ export const metadata: Metadata = {
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
   // Google Search Console: postavite NEXT_PUBLIC_GOOGLE_VERIFICATION (samo kod iz meta taga)
-  verification: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION ? { google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION } : undefined,
+  verification: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION }
+    : undefined,
 };
 
 export const viewport: Viewport = {
@@ -60,7 +85,12 @@ const themeScript = `(function(){try{var t=localStorage.getItem("codecraft-theme
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang={site.language} data-theme="dark" suppressHydrationWarning className={`${poppins.variable} ${inter.variable}`}>
+    <html
+      lang={site.language}
+      data-theme="dark"
+      suppressHydrationWarning
+      className={`${poppins.variable} ${inter.variable}`}
+    >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
