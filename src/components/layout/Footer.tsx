@@ -19,6 +19,7 @@ export function Footer() {
               <li key={label}>
                 <a href={href} aria-label={label} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="grid size-10 place-items-center rounded-control border border-line text-muted transition-colors hover:border-line-strong hover:text-ink">
                   <Icon className="size-5" aria-hidden />
+                  {href.startsWith("http") && <span className="sr-only">(otvara se u novom tabu)</span>}
                 </a>
               </li>
             ))}

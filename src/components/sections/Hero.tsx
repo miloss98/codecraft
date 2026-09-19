@@ -17,17 +17,12 @@ export function Hero() {
             <br />
             <span className="text-accent">{hero.titleLine2}</span>
           </h1>
-          <p className="mb-8 max-w-[520px] text-body-lg text-muted">
-            {hero.lead}
-          </p>
+          <p className="mb-8 max-w-[520px] text-body-lg text-muted">{hero.lead}</p>
           <div className="flex flex-col gap-4 sm:flex-row">
             <Button href="#kontakt">
-              {hero.primaryCta}{" "}
-              <ArrowRight className="size-[18px]" aria-hidden />
+              {hero.primaryCta} <ArrowRight className="size-[18px]" aria-hidden />
             </Button>
-            <Button href="#usluge" variant="secondary">
-              {hero.secondaryCta}
-            </Button>
+            <Button href="#usluge" variant="secondary">{hero.secondaryCta}</Button>
           </div>
         </div>
         <div className="relative pb-8 pr-8">

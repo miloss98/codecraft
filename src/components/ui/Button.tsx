@@ -6,29 +6,15 @@ type Props = {
   className?: string;
   children: React.ReactNode;
 } & (
-  | ({ href: string } & Omit<
-      React.ComponentProps<"a">,
-      "className" | "children"
-    >)
-  | ({ href?: undefined } & Omit<
-      React.ComponentProps<"button">,
-      "className" | "children"
-    >)
+  | ({ href: string } & Omit<React.ComponentProps<"a">, "className" | "children">)
+  | ({ href?: undefined } & Omit<React.ComponentProps<"button">, "className" | "children">)
 );
 
-export function Button({
-  variant = "primary",
-  size = "md",
-  className,
-  children,
-  ...rest
-}: Props) {
+export function Button({ variant = "primary", size = "md", className, children, ...rest }: Props) {
   const classes = cn(
     "inline-flex cursor-pointer items-center justify-center gap-2 rounded-control border font-semibold leading-none transition duration-150",
     "max-md:w-full md:w-auto",
-    size === "md"
-      ? "px-6 py-4 text-base"
-      : "px-[18px] py-3 text-[15px] max-md:w-auto",
+    size === "md" ? "px-6 py-4 text-base" : "px-[18px] py-3 text-[15px] max-md:w-auto",
     variant === "primary"
       ? "border-transparent bg-accent text-on-accent hover:bg-accent-hover hover:shadow-glow"
       : "border-field bg-transparent text-ink hover:border-ink",

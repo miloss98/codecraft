@@ -21,6 +21,7 @@ export function ContactInfo() {
                 <span className="min-w-0 flex-1">
                   <span className="block font-display font-semibold">{label}</span>
                   <span className="block truncate text-sm text-muted">{value}</span>
+                  {href.startsWith("http") && <span className="sr-only">(otvara se u novom tabu)</span>}
                 </span>
                 <ArrowUpRight className="size-5 shrink-0 text-muted transition-colors group-hover:text-accent" aria-hidden />
               </a>

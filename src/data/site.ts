@@ -5,9 +5,35 @@ import type { IconType } from "react-icons";
 /** Osnovni podaci o sajtu. TODO: zamijenite placeholder linkove pravim. */
 export const site = {
   name: "CodeCraft",
+  /**
+   * Javna adresa sajta (bez / na kraju). Postavite u .env.local / hosting panelu:
+   * NEXT_PUBLIC_SITE_URL=https://vasdomen.ba
+   * Dok nije postavljena, sajt se NE indeksira (robots noindex), da test verzije ne završe u Googleu.
+   */
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, ""),
+  indexable: Boolean(process.env.NEXT_PUBLIC_SITE_URL),
+  locale: "bs_BA",
+  language: "bs",
   tagline: "Web i mobilne aplikacije. Brzo. Kvalitetno.",
+  /** Naslov i opis za Google i društvene mreže (opis do ~155 znakova). */
+  seoTitle: "CodeCraft | Izrada sajtova i aplikacija za firme",
   description:
-    "CodeCraft je web agencija: web prezentacije, web aplikacije i mobilne aplikacije za male i srednje biznise. Vrhunski kvalitet, brza izrada.",
+    "CodeCraft izrađuje web sajtove, web aplikacije i mobilne aplikacije za male i srednje firme. Iskusan tim, brza izrada, podrška nakon lansiranja.",
+  keywords: [
+    "izrada web stranica",
+    "izrada sajtova",
+    "izrada web aplikacija",
+    "izrada mobilnih aplikacija",
+    "web agencija",
+    "web dizajn",
+    "sajt za firmu",
+    "sajt za male biznise",
+  ],
+  /** Za structured data (Google). TODO: prilagodite područje djelovanja. */
+  areaServed: ["Bosna i Hercegovina"],
+  ogImage: { path: "/og-image.png", width: 1200, height: 630, alt: "CodeCraft: pravimo sajtove i aplikacije za vaš postojeći biznis" },
+  logo: { path: "/logo.png", size: 512 },
+  themeColor: { dark: "#0b0d12", light: "#ffffff" },
   contact: {
     olx: "https://www.olx.ba", // TODO: link na vaš OLX profil
     instagram: "https://www.instagram.com", // TODO: link na vaš Instagram
@@ -43,7 +69,7 @@ export const services: { icon: LucideIcon; title: string; text: string }[] = [
   { icon: Smartphone, title: "Mobilne Aplikacije", text: "Aplikacije za iOS i Android koje vaši klijenti zaista žele imati na telefonu." },
 ];
 
-export const process: { icon: LucideIcon; title: string; text: string }[] = [
+export const processSteps: { icon: LucideIcon; title: string; text: string }[] = [
   { icon: MessageSquare, title: "Razgovor", text: "Slušamo šta trebate, ko su vaši klijenti i šta je cilj. Dobijate jasnu ponudu i rok." },
   { icon: PenTool, title: "Dizajn", text: "Vizuelni prijedlog prije prve linije koda. Prilagođavamo ga dok vam ne bude taman." },
   { icon: Code2, title: "Razvoj", text: "Gradimo u kratkim ciklusima i redovno vam pokazujemo napredak na živoj verziji." },
